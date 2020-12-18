@@ -242,8 +242,8 @@ function initializeDisplay() {
                                             +'<a class="p-0" target="_blank" href="' + d.url + '">'
                                                 +'<span>' + d.headline + '</span>'
                                             +'</a>'
-                                            +'<button type="button" onclick="hidetooltip()" class="close ml-2" aria-label="Close">'
-                                            +    '<span class="closeSpan" aria-hidden="true">&times;</span>'
+                                            +'<button type="button" onclick="hidetooltip()" class="btn bt-sm btn-link p-0 ml-1" aria-label="Close">'
+                                            +    '<span class="closeSpan" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>'
                                             +'</button>'
                                         +'</div>'
                                         +'<div><b>' + d.otherArticlesConnectedWith + '</b>'+' connections</div>'
@@ -270,15 +270,9 @@ function initializeDisplay() {
                 })
                 .on("touchstart", dragstarted)
                 .on("touchmove", dragged)
-                .on("touchend", dragended)
+                .on("touchend", dragended);
 
-    // node tooltip
-    // node.append("title")
-    //     .text(function (d) {
-    //         showDetails(d);
-    //         return d.id;
-    //     });
-
+   
     nodePoints = svg.selectAll("text")
         .data(graph.nodes)
         .enter().append('text')
@@ -392,23 +386,6 @@ function updateAll() {
     updateDisplay();
 }
 
-//alert card Info
-function showDetails(d) {
-  var html =  `<div id="${d.docid}" class="d-none nodeTooltip alert alert-warning alert-dismissible fade show" role="alert">
-                    <div>
-                        <div style="word-break: break-all;">
-                            <a class="p-0" target="_blank" href="${d.url}">
-                                <span>${d.headline}</span>
-                            </a>
-                        </div>
-                        <div><b>${d.otherArticlesConnectedWith}</b> connections</div>
-                    </div>
-                    <button type="button" class="close" aria-label="Close" onclick="hideNodeInfo(${d.docid})">
-                        <span aria-hidden="true" class="closeSpan"><b>&times;</b></span>
-                    </button>
-                </div>`  
-    $('#nodeInfo').append(html);
-}
 
 function hideNodeInfo(docid) {
     $(docid).addClass('d-none');
