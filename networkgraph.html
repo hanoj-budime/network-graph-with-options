@@ -1,13 +1,15 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <title>Network Graph</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=5, minimum-scale=1.0, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link href="font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,7 +21,7 @@
             <div class="custom-control custom-switch mb-2">
                 <input type="checkbox" class="custom-control-input" id="theameSwitch">
                 <label id="theameSwitchLabel" class="custom-control-label" for="theameSwitch">
-                    Light theme
+                    <i class="fa fa-fw fa-sun-o"></i> Light theme
                 </label>
             </div>
             <div class="alpha_bar" onclick="updateAll();">
@@ -260,22 +262,17 @@
     <div id="my_dataviz"></div>
     <div id="nodeInfo" style="position: absolute;top: 0;right: 0;"></div>
 
-    <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
-    <script src="d3.v4.min.js"></script>
+    <script src="assets/js/d3.v4.min.js"></script>
+    <script src="assets/js/d3-color.v2.min.js"></script>
+    <script src="assets/js/d3-interpolate.v2.min.js"></script>
+    <script src="assets/js/d3-scale-chromatic.min.js"></script>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-    <script src="d3-color.v2.min.js"></script>
-    <script src="d3-interpolate.v2.min.js"></script>
-    <script src="d3-scale-chromatic.min.js"></script>
-
-    <script src="jquery-3.4.1.min.js"></script>
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
     <!-- Json -->
-    <!-- <script src="miserables.json"></script> -->
     <script src="networkmap.json"></script>
-    <script src="code.js"></script>
-
-    <!-- <script src="https://kit.fontawesome.com/6dfec9fb94.js" crossorigin="anonymous"></script> -->
+    <script src="assets/js/code.js"></script>
 
 </body>
 

@@ -431,20 +431,20 @@ function initializeEvents() {
 function updateDetectTheme(value) {
     if (value) {
         localStorage.setItem('theme',value);
-        $('#theameSwitchLabel').text('Dark theme');
+        $('#theameSwitchLabel').html('<i class="fa fa-fw fa-moon-o"></i> Dark theme');
         $('body').css('background','#000000');
         $('body').css('color','#FFFFFF');
         $('.controls .force').css('background-color','rgb(98 98 98 / 61%)');
-        $('div.mytooltip').css('background-color','rgb(98 98 98)');
+        $('div.mytooltip').css('background-color','rgb(98 98 98 / 70%)');
         $('.closeSpan').css('color','#FFFFFF !important');
         $('.dataPoints').attr('fill','#FFFFFF');
     } else {
         localStorage.setItem('theme',value);
-        $('#theameSwitchLabel').text('Light theme');
+        $('#theameSwitchLabel').html('<i class="fa fa-fw fa-sun-o"></i> Light theme');
         $('body').css('background','#FFFFFF');
         $('body').css('color','#000000');
         $('.controls .force').css('background-color','#eee');
-        $('div.mytooltip').css('background-color','#FFFFFF');
+        $('div.mytooltip').css('background-color','rgb(255 255 255 / 70%)');
         $('.closeSpan').css('color','#000000 !important');
         $('.dataPoints').attr('fill','#000000');
     }
