@@ -95,10 +95,6 @@ function d3Data(widgetData) {
             maxValue = linkData.value;
         }
     }
-    console.log('widgetData.links.length ::', widgetData.links.length);
-    console.log('sumValue ::', sumValue);
-    console.log('minvalue ::', minValue);
-    console.log('maxValue ::', maxValue);
 
     graph = widgetData;
     initializeDisplay();
@@ -439,7 +435,7 @@ function updateDetectTheme(value) {
         $('body').css('background','#000000');
         $('body').css('color','#FFFFFF');
         $('.controls .force').css('background-color','rgb(98 98 98 / 61%)');
-        $('div.mytooltip').css('background-color','rgb(98 98 98 / 61%)');
+        $('div.mytooltip').css('background-color','rgb(98 98 98)');
         $('.closeSpan').css('color','#FFFFFF !important');
         $('.dataPoints').attr('fill','#FFFFFF');
     } else {
