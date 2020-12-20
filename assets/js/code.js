@@ -466,7 +466,7 @@ function hideNodeInfo() {
 function displayLinkInfo(d) {
     var html  = `<div id="tooltipLinkInfo" class="shadow border border-primary rounded p-2 mr-3 mt-3 ml-auto">
                     <div class="d-flex justify-content-between">
-                        <span><b>${d.value} common phrases</b></span>
+                        <span><b>${d.value}</b> common phrases</span>
                         <button type="button" onclick="hideLinkInfo()" class="btn bt-sm btn-link p-0 mr-1" aria-label="Close">
                             <span class="closeSpan" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </button>

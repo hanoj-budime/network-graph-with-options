@@ -13,255 +13,259 @@
 </head>
 
 <body>
-    <div class="controls accordion" id="accordionOptionMain">
+    <div class="container-fluid p-0">
 
-        <div class="force alpha">
-            <p><label>alpha</label>
-                <br>Simulation activity</p>
-            <div class="custom-control custom-switch mb-2">
-                <input type="checkbox" class="custom-control-input" id="theameSwitch">
-                <label id="theameSwitchLabel" class="custom-control-label" for="theameSwitch">
-                    <i class="fa fa-fw fa-sun-o"></i> Light theme
-                </label>
-            </div>
-            <div class="alpha_bar" onclick="updateAll();">
-                <div id="alpha_value"></div>
-            </div>
-        </div>
+        <div class="controls accordion" id="accordionOptionMain">
 
-        <div class="force">
-            <div id="centerhead">
-                <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#centerBody" aria-expanded="true" aria-controls="centerBody">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <div><p class="mb-0"><label>center</label></p></div>
-                        <div class="rightSubMenu">
-                            <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </button>
+            <div class="force alpha">
+                <p><label>alpha</label>
+                    <br>Simulation activity</p>
+                <div class="custom-control custom-switch mb-2">
+                    <input type="checkbox" class="custom-control-input" id="theameSwitch">
+                    <label id="theameSwitchLabel" class="custom-control-label" for="theameSwitch">
+                        <i class="fa fa-fw fa-sun-o"></i> Light theme
+                    </label>
+                </div>
+                <div class="alpha_bar" onclick="updateAll();">
+                    <div id="alpha_value"></div>
+                </div>
             </div>
-            <div id="centerBody" class="collapse hide" aria-labelledby="centerhead" data-parent="#accordionOptionMain">
-                <p>Shifts the view, so the graph is centered at this location.</p>
-                <label>
-                    x
-                    <output id="center_XSliderOutput">.5</output>
-                    <input type="range" min="0" max="1" value=".5" step="0.01"
-                        oninput="$('#center_XSliderOutput').text(value); forceProperties.center.x=value; updateAll();">
-                </label>
-                <label>
-                    y
-                    <output id="center_YSliderOutput">.5</output>
-                    <input type="range" min="0" max="1" value=".5" step="0.01"
-                        oninput="$('#center_YSliderOutput').text(value); forceProperties.center.y=value; updateAll();">
-                </label>
-            </div>
-        </div>
-    
-        <div class="force">
-            <div id="chargehead">
-                <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#chargeBody" aria-expanded="true" aria-controls="chargeBody">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <div>
-                            <p class="mb-0">
-                                <label>
-                                    <input type="checkbox" checked onchange="forceProperties.charge.enabled = this.checked; updateAll();">
-                                        charge
-                                </label>
-                            </p>
-                        </div>
-                        <div class="rightSubMenu">
-                            <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div id="chargeBody" class="collapse hide" aria-labelledby="chargehead" data-parent="#accordionOptionMain">
-                <p> Attracts (+) or repels (-) nodes to/from each other.</p>
-                <label title="Negative strength repels nodes. Positive strength attracts nodes.">
-                    strength
-                    <output id="charge_StrengthSliderOutput">-30</output>
-                    <input type="range" min="-200" max="50" value="-30" step=".1"
-                        oninput="$('#charge_StrengthSliderOutput').text(value); forceProperties.charge.strength=value; updateAll();">
-                </label>
-                <label title="Minimum distance where force is applied">
-                    distanceMin
-                    <output id="charge_distanceMinSliderOutput">1</output>
-                    <input type="range" min="0" max="50" value="1" step=".1"
-                        oninput="$('#charge_distanceMinSliderOutput').text(value); forceProperties.charge.distanceMin=value; updateAll();">
-                </label>
-                <label title="Maximum distance where force is applied">
-                    distanceMax
-                    <output id="charge_distanceMaxSliderOutput">2000</output>
-                    <input type="range" min="0" max="2000" value="2000" step=".1"
-                        oninput="$('#charge_distanceMaxSliderOutput').text(value); forceProperties.charge.distanceMax=value; updateAll();">
-                </label>
-            </div>
-        </div>
 
-        <div class="force">
-            <div id="collidehead">
-                <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#collideBody" aria-expanded="true" aria-controls="collideBody">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <div>
-                            <p class="mb-0">
-                                <label><input type="checkbox" checked
-                                    onchange="forceProperties.collide.enabled = this.checked; updateAll();"> collide</label>
-                            </p>
+            <div class="force">
+                <div id="centerhead">
+                    <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
+                        data-target="#centerBody" aria-expanded="true" aria-controls="centerBody">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div><p class="mb-0"><label>center</label></p></div>
+                            <div class="rightSubMenu">
+                                <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                            </div>
                         </div>
-                        <div class="rightSubMenu">
-                            <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div id="centerBody" class="collapse hide" aria-labelledby="centerhead" data-parent="#accordionOptionMain">
+                    <p>Shifts the view, so the graph is centered at this location.</p>
+                    <label>
+                        x
+                        <output id="center_XSliderOutput">.5</output>
+                        <input type="range" min="0" max="1" value=".5" step="0.01"
+                            oninput="$('#center_XSliderOutput').text(value); forceProperties.center.x=value; updateAll();">
+                    </label>
+                    <label>
+                        y
+                        <output id="center_YSliderOutput">.5</output>
+                        <input type="range" min="0" max="1" value=".5" step="0.01"
+                            oninput="$('#center_YSliderOutput').text(value); forceProperties.center.y=value; updateAll();">
+                    </label>
+                </div>
+            </div>
+        
+            <div class="force">
+                <div id="chargehead">
+                    <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
+                        data-target="#chargeBody" aria-expanded="true" aria-controls="chargeBody">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div>
+                                <p class="mb-0">
+                                    <label>
+                                        <input type="checkbox" checked onchange="forceProperties.charge.enabled = this.checked; updateAll();">
+                                            charge
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="rightSubMenu">
+                                <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                            </div>
                         </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
+                <div id="chargeBody" class="collapse hide" aria-labelledby="chargehead" data-parent="#accordionOptionMain">
+                    <p> Attracts (+) or repels (-) nodes to/from each other.</p>
+                    <label title="Negative strength repels nodes. Positive strength attracts nodes.">
+                        strength
+                        <output id="charge_StrengthSliderOutput">-30</output>
+                        <input type="range" min="-200" max="50" value="-30" step=".1"
+                            oninput="$('#charge_StrengthSliderOutput').text(value); forceProperties.charge.strength=value; updateAll();">
+                    </label>
+                    <label title="Minimum distance where force is applied">
+                        distanceMin
+                        <output id="charge_distanceMinSliderOutput">1</output>
+                        <input type="range" min="0" max="50" value="1" step=".1"
+                            oninput="$('#charge_distanceMinSliderOutput').text(value); forceProperties.charge.distanceMin=value; updateAll();">
+                    </label>
+                    <label title="Maximum distance where force is applied">
+                        distanceMax
+                        <output id="charge_distanceMaxSliderOutput">2000</output>
+                        <input type="range" min="0" max="2000" value="2000" step=".1"
+                            oninput="$('#charge_distanceMaxSliderOutput').text(value); forceProperties.charge.distanceMax=value; updateAll();">
+                    </label>
+                </div>
             </div>
-            <div id="collideBody" class="collapse hide" aria-labelledby="collidehead" data-parent="#accordionOptionMain">
-                <p>Prevents nodes from overlapping</p>
-                <label>
-                    strength
-                    <output id="collide_StrengthSliderOutput">.7</output>
-                    <input type="range" min="0" max="2" value=".7" step=".1"
-                        oninput="$('#collide_StrengthSliderOutput').text(value); forceProperties.collide.strength=value; updateAll();">
-                </label>
-                <label title="Size of nodes">
-                    radius
-                    <output id="collide_radiusSliderOutput">5</output>
-                    <input type="range" min="0" max="100" value="5" step="1"
-                        oninput="$('#collide_radiusSliderOutput').text(value); forceProperties.collide.radius=value; updateAll();">
-                </label>
-                <label
-                    title="Higher values increase rigidity of the nodes (WARNING: high values are computationally expensive)">
-                    iterations
-                    <output id="collide_iterationsSliderOutput">1</output>
-                    <input type="range" min="1" max="10" value="1" step="1"
-                        oninput="$('#collide_iterationsSliderOutput').text(value); forceProperties.collide.iterations=value; updateAll();">
-                </label>
-            </div>
-        </div>
 
-        <div class="force">
-            <div id="forceXhead">
-                <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#forceXBody" aria-expanded="true" aria-controls="forceXBody">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <div>
-                            <p class="mb-0">
-                                <label>
-                                    <input type="checkbox" onchange="forceProperties.forceX.enabled = this.checked; updateAll();">
-                                    forceX
-                                </label>
-                            </p>
+            <div class="force">
+                <div id="collidehead">
+                    <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
+                        data-target="#collideBody" aria-expanded="true" aria-controls="collideBody">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div>
+                                <p class="mb-0">
+                                    <label><input type="checkbox" checked
+                                        onchange="forceProperties.collide.enabled = this.checked; updateAll();"> collide</label>
+                                </p>
+                            </div>
+                            <div class="rightSubMenu">
+                                <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                            </div>
                         </div>
-                        <div class="rightSubMenu">
-                            <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
+                <div id="collideBody" class="collapse hide" aria-labelledby="collidehead" data-parent="#accordionOptionMain">
+                    <p>Prevents nodes from overlapping</p>
+                    <label>
+                        strength
+                        <output id="collide_StrengthSliderOutput">.7</output>
+                        <input type="range" min="0" max="2" value=".7" step=".1"
+                            oninput="$('#collide_StrengthSliderOutput').text(value); forceProperties.collide.strength=value; updateAll();">
+                    </label>
+                    <label title="Size of nodes">
+                        radius
+                        <output id="collide_radiusSliderOutput">5</output>
+                        <input type="range" min="0" max="100" value="5" step="1"
+                            oninput="$('#collide_radiusSliderOutput').text(value); forceProperties.collide.radius=value; updateAll();">
+                    </label>
+                    <label
+                        title="Higher values increase rigidity of the nodes (WARNING: high values are computationally expensive)">
+                        iterations
+                        <output id="collide_iterationsSliderOutput">1</output>
+                        <input type="range" min="1" max="10" value="1" step="1"
+                            oninput="$('#collide_iterationsSliderOutput').text(value); forceProperties.collide.iterations=value; updateAll();">
+                    </label>
+                </div>
             </div>
-            <div id="forceXBody" class="collapse hide" aria-labelledby="forceXhead" data-parent="#accordionOptionMain">
-                <p>Acts like gravity. Pulls all points towards an X location.</p>
-                <label>
-                    strength
-                    <output id="forceX_StrengthSliderOutput">.1</output>
-                    <input type="range" min="0" max="1" value=".1" step="0.01"
-                        oninput="$('#forceX_StrengthSliderOutput').text(value); forceProperties.forceX.strength=value; updateAll();">
-                </label>
-                <label
-                    title="The X location that the force will push the nodes to (NOTE: This demo multiplies by the svg width)">
-                    x
-                    <output id="forceX_XSliderOutput">.5</output>
-                    <input type="range" min="0" max="1" value=".5" step="0.01"
-                        oninput="$('#forceX_XSliderOutput').text(value); forceProperties.forceX.x=value; updateAll();">
-                </label>
-            </div>
-        </div>
 
-        <div class="force">
-            <div id="forceYhead">
-                <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#forceYBody" aria-expanded="true" aria-controls="forceYBody">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <div>
-                            <p class="mb-0">
-                                <label>
-                                    <input type="checkbox" onchange="forceProperties.forceY.enabled = this.checked; updateAll();">
-                                    forceY
-                                </label>
-                            </p>
+            <div class="force">
+                <div id="forceXhead">
+                    <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
+                        data-target="#forceXBody" aria-expanded="true" aria-controls="forceXBody">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div>
+                                <p class="mb-0">
+                                    <label>
+                                        <input type="checkbox" onchange="forceProperties.forceX.enabled = this.checked; updateAll();">
+                                        forceX
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="rightSubMenu">
+                                <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                            </div>
                         </div>
-                        <div class="rightSubMenu">
-                            <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
+                <div id="forceXBody" class="collapse hide" aria-labelledby="forceXhead" data-parent="#accordionOptionMain">
+                    <p>Acts like gravity. Pulls all points towards an X location.</p>
+                    <label>
+                        strength
+                        <output id="forceX_StrengthSliderOutput">.1</output>
+                        <input type="range" min="0" max="1" value=".1" step="0.01"
+                            oninput="$('#forceX_StrengthSliderOutput').text(value); forceProperties.forceX.strength=value; updateAll();">
+                    </label>
+                    <label
+                        title="The X location that the force will push the nodes to (NOTE: This demo multiplies by the svg width)">
+                        x
+                        <output id="forceX_XSliderOutput">.5</output>
+                        <input type="range" min="0" max="1" value=".5" step="0.01"
+                            oninput="$('#forceX_XSliderOutput').text(value); forceProperties.forceX.x=value; updateAll();">
+                    </label>
+                </div>
             </div>
-            <div id="forceYBody" class="collapse hide" aria-labelledby="forceYhead" data-parent="#accordionOptionMain">
-                <p>Acts like gravity. Pulls all points towards a Y location.</p>
-                <label>
-                    strength
-                    <output id="forceY_StrengthSliderOutput">.1</output>
-                    <input type="range" min="0" max="1" value=".1" step="0.01"
-                        oninput="$('#forceY_StrengthSliderOutput').text(value); forceProperties.forceY.strength=value; updateAll();">
-                </label>
-                <label
-                    title="The Y location that the force will push the nodes to (NOTE: This demo multiplies by the svg height)">
-                    y
-                    <output id="forceY_YSliderOutput">.5</output>
-                    <input type="range" min="0" max="1" value=".5" step="0.01"
-                        oninput="$('#forceY_YSliderOutput').text(value); forceProperties.forceY.y=value; updateAll();">
-                </label>
-            </div>
-        </div>
 
-        <div class="force">
-            <div id="linkhead">
-                <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#linkBody" aria-expanded="true" aria-controls="linkBody">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <div>
-                            <p class="mb-0">
-                                <label>
-                                    <input type="checkbox" checked onchange="forceProperties.link.enabled = this.checked; updateAll();">
-                                    link
-                                </label>
-                            </p>
+            <div class="force">
+                <div id="forceYhead">
+                    <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
+                        data-target="#forceYBody" aria-expanded="true" aria-controls="forceYBody">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div>
+                                <p class="mb-0">
+                                    <label>
+                                        <input type="checkbox" onchange="forceProperties.forceY.enabled = this.checked; updateAll();">
+                                        forceY
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="rightSubMenu">
+                                <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                            </div>
                         </div>
-                        <div class="rightSubMenu">
-                            <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
-                            <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
+                <div id="forceYBody" class="collapse hide" aria-labelledby="forceYhead" data-parent="#accordionOptionMain">
+                    <p>Acts like gravity. Pulls all points towards a Y location.</p>
+                    <label>
+                        strength
+                        <output id="forceY_StrengthSliderOutput">.1</output>
+                        <input type="range" min="0" max="1" value=".1" step="0.01"
+                            oninput="$('#forceY_StrengthSliderOutput').text(value); forceProperties.forceY.strength=value; updateAll();">
+                    </label>
+                    <label
+                        title="The Y location that the force will push the nodes to (NOTE: This demo multiplies by the svg height)">
+                        y
+                        <output id="forceY_YSliderOutput">.5</output>
+                        <input type="range" min="0" max="1" value=".5" step="0.01"
+                            oninput="$('#forceY_YSliderOutput').text(value); forceProperties.forceY.y=value; updateAll();">
+                    </label>
+                </div>
             </div>
-            <div id="linkBody" class="collapse hide" aria-labelledby="linkhead" data-parent="#accordionOptionMain">
-                <p>Sets link length</p>
-                <label title="The force will push/pull nodes to make links this long">
-                    distance
-                    <output id="link_DistanceSliderOutput">30</output>
-                    <input type="range" min="0" max="100" value="30" step="1"
-                        oninput="$('#link_DistanceSliderOutput').text(value); forceProperties.link.distance=value; updateAll();">
-                </label>
-                <label
-                    title="Higher values increase rigidity of the links (WARNING: high values are computationally expensive)">
-                    iterations
-                    <output id="link_IterationsSliderOutput">1</output>
-                    <input type="range" min="1" max="10" value="1" step="1"
-                        oninput="$('#link_IterationsSliderOutput').text(value); forceProperties.link.iterations=value; updateAll();">
-                </label>
+
+            <div class="force">
+                <div id="linkhead">
+                    <button class="p-0 btn btn-link btn-block text-decoration-none collapsed" type="button" data-toggle="collapse"
+                        data-target="#linkBody" aria-expanded="true" aria-controls="linkBody">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div>
+                                <p class="mb-0">
+                                    <label>
+                                        <input type="checkbox" checked onchange="forceProperties.link.enabled = this.checked; updateAll();">
+                                        link
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="rightSubMenu">
+                                <i class="fa fa-chevron-down openedSubMenu" aria-hidden="true"></i>
+                                <i class="fa fa-chevron-right closedSubMenu" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div id="linkBody" class="collapse hide" aria-labelledby="linkhead" data-parent="#accordionOptionMain">
+                    <p>Sets link length</p>
+                    <label title="The force will push/pull nodes to make links this long">
+                        distance
+                        <output id="link_DistanceSliderOutput">30</output>
+                        <input type="range" min="0" max="100" value="30" step="1"
+                            oninput="$('#link_DistanceSliderOutput').text(value); forceProperties.link.distance=value; updateAll();">
+                    </label>
+                    <label
+                        title="Higher values increase rigidity of the links (WARNING: high values are computationally expensive)">
+                        iterations
+                        <output id="link_IterationsSliderOutput">1</output>
+                        <input type="range" min="1" max="10" value="1" step="1"
+                            oninput="$('#link_IterationsSliderOutput').text(value); forceProperties.link.iterations=value; updateAll();">
+                    </label>
+                </div>
             </div>
         </div>
+        <!-- <svg></svg> -->
+        <div id="my_dataviz"></div>
+        <div id="nodeInfo" style="position: absolute;top: 0;right: 0;"></div>
+
     </div>
-    <!-- <svg></svg> -->
-    <div id="my_dataviz"></div>
-    <div id="nodeInfo" style="position: absolute;top: 0;right: 0;"></div>
-
+    
     <script src="assets/js/d3.v4.min.js"></script>
     <script src="assets/js/d3-color.v2.min.js"></script>
     <script src="assets/js/d3-interpolate.v2.min.js"></script>
