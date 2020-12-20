@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <div class="container-fluid p-0">
+        
     <div class="controls accordion" id="accordionOptionMain">
         <div class="force alpha">
             <p><label>alpha</label>
@@ -149,7 +151,9 @@
     </div>
     <!-- <svg></svg> -->
     <div id="my_dataviz"></div>
-    <div id="nodeInfo" style="position: absolute;top: 0;right: 0;"></div>
+    <div id="nodeInfo" class="fixed-top ml-auto"></div>
+
+    </div>
 
     <script src="assets/js/d3.v4.min.js"></script>
     <script src="assets/js/d3-color.v2.min.js"></script>

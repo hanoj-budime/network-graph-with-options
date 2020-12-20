@@ -19,11 +19,12 @@ button :focus {
 svg {
     width: 100%;
     height: 100%;
+    overflow: overlay !important;
 }
 
 #my_dataviz {
     width: 100%;
-    /* height: 100%; */
+    height: 100%;
 }
 
 .controls {
@@ -173,4 +174,25 @@ button.collapsed .openedSubMenu {
 
 button.collapsed .closedSubMenu {
     display: block;
+}
+
+
+#nodeInfo {
+    width: 25rem;
+}
+
+#tooltipNodeInfo{
+    backdrop-filter: blur(5px);
+}
+
+#tooltipLinkInfo{
+    backdrop-filter: blur(5px);
+}
+
+#tooltipLinkInfo{
+    width: 18rem;
+}
+
+i {
+    font-size: 1rem;
 }

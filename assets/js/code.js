@@ -5,6 +5,7 @@ var svg = d3.select("#my_dataviz")
             .append("svg"),
     width = +svg.node().getBoundingClientRect().width,
     height = +svg.node().getBoundingClientRect().height;
+
 var tooltip = d3.select("#my_dataviz")
     .append("div")
     .attr("class", "mytooltip chartFilterPopoverContainer")
@@ -186,26 +187,10 @@ function initializeDisplay() {
 
     //link tooltip
     link.attr('class', 'link')
-        .on('mouseover.tooltip', function(d) {
-            tooltip.transition()
-                .duration(300)
-                .style("opacity", 1);
-            tooltip.html(
-                    '<div><b>' + d.value + ' common phrases</b></div>')
-                .style("left", (d.source.x) + "px")
-                .style("top", (d.source.y) + "px");
+        .on("click", function(d){
+            displayLinkInfo(d);
         })
-        .on("mouseout.tooltip", function() {
-            tooltip.transition()
-                .duration(100)
-                .style("opacity", 0);
-        })
-        .on('mouseout.fade', fade(1))
-        .on("mousemove", function(d) {
-            let pos = d3.select(this).node().getBoundingClientRect();
-            tooltip.style("left", (d.source.x) + "px")
-                .style("top", (d.source.y) + "px");
-        });
+        .on('mouseout.fade', fade(1));
 
     // set the data and properties of node circles
     node = svg.append("g")
@@ -231,42 +216,10 @@ function initializeDisplay() {
                         return "#87E5B0"; //
                     }
                 })
-                .on('mouseover.tooltip', function(d) {
-                    tooltip.transition()
-                        .duration(300)
-                        .style("opacity", 1)
-                        .style('pointer-events',"all");
-                    tooltip.html('<div id="tooltipInfo">'
-                                    +'<div>'
-                                        +'<div class="d-flex justify-content-between align-items-baseline" style="word-break: break-all;">'
-                                            +'<a class="p-0" target="_blank" href="' + d.url + '">'
-                                                +'<span>' + d.headline + '</span>'
-                                            +'</a>'
-                                            +'<button type="button" onclick="hidetooltip()" class="btn bt-sm btn-link p-0 ml-1" aria-label="Close">'
-                                            +    '<span class="closeSpan" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>'
-                                            +'</button>'
-                                        +'</div>'
-                                        +'<div><b>' + d.otherArticlesConnectedWith + '</b>'+' connections</div>'
-                                        +'<div><b>' + d.storyNum + '</b>'+' storyNum</div>'
-                                    +'</div>'
-                                +'</div>')
-                        .style("left", function() {
-                            return (d.x-20) + "px";
-                        })
-                        .style("top", (d.y-20) + "px");
-                })
                 .on('mouseover.fade', fade(0.1))
-                .on("mouseout.tooltip", function() {
-                    // tooltip.transition()
-                    //     .duration(5000)
-                    //     .style("opacity", 0);
-                })
                 .on('mouseout.fade', fade(1))
-                .on("mousemove", function(d) {
-                    tooltip.style("left", function() {
-                                return (d.x+10) + "px";
-                        })
-                        .style("top", (d.y+20) + "px");
+                .on("click", function(d){
+                    displayNodeInfo(d);
                 })
                 .on("touchstart", dragstarted)
                 .on("touchmove", dragged)
@@ -277,6 +230,7 @@ function initializeDisplay() {
         .data(graph.nodes)
         .enter().append('text')
         .attr("class", "dataPoints")
+        .attr("style", "pointer-events: none;")
         .text(function(d) {
             return d.storyNum
         });
@@ -386,19 +340,7 @@ function updateAll() {
     updateDisplay();
 }
 
-
-function hideNodeInfo(docid) {
-    $(docid).addClass('d-none');
-}
-
 function initializeEvents() {
-
-    // $('circle').off('mouseover').on('mouseover', function(){
-    //     $(`#nodeInfo .nodeTooltip`).addClass('d-none');
-    //     console.log($(this).attr('docid'));
-    //     var id = $(this).attr('docid').trim();
-    //     $('#'+id).removeClass('d-none');
-    // })
     $('#theameSwitch').on('click', function() {
         var value =  $(this).is(':checked');
         updateDetectTheme(value);
@@ -428,6 +370,25 @@ function updateDetectTheme(value) {
 }
 
 //tooltip
+function returnHtmlToolTip(d) {
+    var html = '<div id="tooltipInfo">'
+                    +'<div>'
+                        +'<div class="d-flex justify-content-between align-items-baseline" style="word-break: break-all;">'
+                            +'<a class="p-0" target="_blank" href="' + d.url + '">'
+                                +'<span>' + d.headline + '</span>'
+                            +'</a>'
+                            +'<button type="button" onclick="hidetooltip()" class="btn bt-sm btn-link p-0 ml-1" aria-label="Close">'
+                            +    '<span class="closeSpan" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>'
+                            +'</button>'
+                        +'</div>'
+                        +'<div><b>' + d.otherArticlesConnectedWith + '</b>'+' connections</div>'
+                        +'<div><b>' + d.storyNum + '</b>'+' storyNum</div>'
+                    +'</div>'
+                +'</div>';
+    // return html;
+    return "";
+}
+
 function initializeToolTip() {
     graph.links.forEach(d => {
         linkedByIndex[`${d.source.index},${d.target.index}`] = 1;
@@ -475,3 +436,95 @@ function getRandomColor(storyNum) {
     //     return storyNumColor[storyNum];
     // }
 }
+
+
+//display Node
+function displayNodeInfo(d) {
+    var html = `<div id="tooltipNodeInfo" class="shadow border border-primary rounded mr-3 mt-3" >
+                <div class="p-2">
+                    <div class="d-flex justify-content-between align-items-baseline" style="word-break: break-all;">
+                        <a class="p-0" target="_blank" href="  ${d.url}  ">
+                            <span>  ${d.headline}  </span>
+                        </a>
+                        <button type="button" onclick="hideNodeInfo()" class="btn bt-sm btn-link p-0 ml-1" aria-label="Close">
+                            <span class="closeSpan" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </button>
+                    </div>
+                    <div><b>  ${d.otherArticlesConnectedWith}  </b> connections</div>
+                    <div><b>  ${d.storyNum}  </b> story Number</div>
+                </div>
+            </div>`;
+    $('#tooltipNodeInfo').remove();
+    $('#nodeInfo').prepend(html);
+}
+
+function hideNodeInfo() {
+    $('#tooltipNodeInfo').remove();
+    // $('#nodeInfo').empty();
+}
+
+function displayLinkInfo(d) {
+    var html  = `<div id="tooltipLinkInfo" class="shadow border border-primary rounded p-2 mr-3 mt-3 ml-auto">
+                    <div class="d-flex justify-content-between">
+                        <span><b>${d.value} common phrases</b></span>
+                        <button type="button" onclick="hideLinkInfo()" class="btn bt-sm btn-link p-0 mr-1" aria-label="Close">
+                            <span class="closeSpan" aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </button>
+                    </div>
+                </div>`;
+    $('#tooltipLinkInfo').remove();
+    $('#nodeInfo').append(html);
+}
+
+function hideLinkInfo() {
+    $('#tooltipLinkInfo').remove();
+}
+
+
+
+
+/** initializeDisplay Node & Link code */
+//node
+// .on('mouseover.tooltip', function(d) {
+//     tooltip.transition()
+//         .duration(300)
+//         .style("opacity", 1)
+//         .style('pointer-events',"all");
+//     tooltip.html(returnHtmlToolTip(d))
+//         .style("left", function() {
+//             return (d.x-20) + "px";
+//         })
+//         .style("top", (d.y-20) + "px");
+// })
+//  .on("mouseout.tooltip", function() {
+    // tooltip.transition()
+    //     .duration(5000)
+    //     .style("opacity", 0);
+// })
+// .on("mousemove", function(d) {
+//     tooltip.style("left", function() {
+//                 return (d.x+10) + "px";
+//         })
+//         .style("top", (d.y+20) + "px");
+// })
+
+//links
+// .on('mouseover.tooltip', function(d) {
+//     tooltip.transition()
+//         .duration(300)
+//         .style("opacity", 1);
+//     tooltip.html(
+//             '<div><b>' + d.value + ' common phrases</b></div>')
+//         .style("left", (d.source.x) + "px")
+//         .style("top", (d.source.y) + "px");
+// })
+// .on("mouseout.tooltip", function() {
+//     tooltip.transition()
+//         .duration(100)
+//         .style("opacity", 0);
+// })
+// .on("mousemove", function(d) {
+//     let pos = d3.select(this).node().getBoundingClientRect();
+//     tooltip.style("left", (d.source.x) + "px")
+//         .style("top", (d.source.y) + "px");
+// });
